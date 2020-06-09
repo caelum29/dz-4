@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const db = require('./database').getInstance();
 db.setModels();
@@ -11,9 +12,8 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(router);
 
-const PORT = 3000;
 
-app.listen(PORT, () => console.log(`server is running on ${PORT}`));
+app.listen(process.env.PORT || 3000, () => console.log(`server is running on ${process.env.PORT || 3000}`));
 
 process.on("unhandledRejection", reason => {
     console.log('Unhandled error');

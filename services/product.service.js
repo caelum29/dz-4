@@ -1,28 +1,28 @@
 const db = require('../database').getInstance();
-const {modelNamesEnum:{PRODUCT}} = require('../constants');
+const {modelNamesEnum: {PRODUCT}} = require('../constants');
 
 module.exports = {
     create: (product) => {
         const ProductModel = db.getModels('Product');
-        return  ProductModel.create(product)
+        return ProductModel.create(product)
     },
     getAll: () => {
         const ProductModel = db.getModels(PRODUCT);
         return ProductModel.findAll();
     },
-    getOne: (id)=>{
+    getOne: (id) => {
         const ProductModel = db.getModels(PRODUCT);
         return ProductModel.findByPk(id)
     },
-    delete: (id)=>{
+    delete: (id) => {
         const ProductModel = db.getModels(PRODUCT);
-        return  ProductModel.destroy({where: {id}})
+        return ProductModel.destroy({where: {id}})
     },
-    update: (id,product) =>{
+    update: (id, product) => {
         const ProductModel = db.getModels(PRODUCT);
         return ProductModel.update(
             product,
             {where: {id}}
         )
     }
-}
+};

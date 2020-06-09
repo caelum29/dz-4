@@ -1,13 +1,16 @@
 const productRouter = require('express').Router();
 
-const {isProductValid} = require('../../middlewares');
+const {isProductValid, isPdoductExist} = require('../../middlewares');
 
 const {productController} = require('../../controllers');
 
 productRouter.get('/', productController.getProducts);
+productRouter.post('/', isProductValid, productController.createProduct);
+
+// productRouter.get('/:productId',isPdoductExist);
+
 productRouter.get('/:productId', productController.getProductById);
-productRouter.post('/',isProductValid, productController.createProduct);
+productRouter.put('/:productId', isProductValid, productController.updateProduct);
 productRouter.delete('/:productId', productController.deleteProduct);
-productRouter.put('/:productId',isProductValid, productController.updateProduct);
 
 module.exports = productRouter;
