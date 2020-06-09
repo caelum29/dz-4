@@ -1,13 +1,14 @@
 const userRouter = require('express').Router();
 
-// const {isProductExist, isProductValid} = require('../../middlewares');
+const {isUserValid} = require('../../middlewares/');
 const {userController} = require('../../controllers');
 
 userRouter.get('/', userController.getAllUsers);
+userRouter.post('/auth',isUserValid, userController.loginUser);
 userRouter.get('/:userId', userController.getUser);
 
-userRouter.post('/', userController.createUser);
+userRouter.post('/',isUserValid, userController.createUser);
 userRouter.delete('/:userId', userController.deleteUser);
-userRouter.put('/:id', userController.updateUser);
+userRouter.put('/:userId',isUserValid, userController.updateUser);
 
 module.exports = userRouter;

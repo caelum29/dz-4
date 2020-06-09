@@ -1,4 +1,4 @@
 const bcrypt = require('bcrypt');
 
-module.exports = password =>  bcrypt.hash(password, 10);
+module.exports = password => bcrypt.hash(password, 10);
 
